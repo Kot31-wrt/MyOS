@@ -14,7 +14,28 @@ def log_syscall(call_name: str, args: str = "",
     conn.close()
 
 
-# Аутентификация 
+# Базовые
+
+def sys_echo(message: str, current_user: str = "guest") -> str:
+    """Возвращает переданное сообщение."""
+    log_syscall("sys_echo", message, current_user)
+    return message
+
+
+def sys_get_users(current_user: str = "guest") -> list:
+    """Возвращает список пользователей из базы."""
+    log_syscall("sys_get_users", "", current_user)
+    conn = get_connection()
+    try:
+        rows = conn.execute(
+            "SELECT id, login, role, created_at FROM users ORDER BY id;"
+        ).fetchall()
+        return [dict(r) for r in rows]
+    finally:
+        conn.close()
+
+
+# Аутентификация
 
 def sys_login(login: str, password: str, current_user: str = "guest") -> bool:
     log_syscall("sys_login", login, current_user)
@@ -31,7 +52,7 @@ def sys_whoami(current_user: str = "guest") -> str:
     return current_user
 
 
-# Файлы
+# Файлы 
 
 def sys_create_file(path: str, content: str = "",
                     current_user: str = "guest") -> int:
@@ -89,6 +110,31 @@ def sys_rmdir(path: str, current_user: str = "guest") -> bool:
     return True
 
 
+# Процессы
+
+def sys_exec(name: str, current_user: str = "guest") -> int:
+    log_syscall("sys_exec", name, current_user)
+    return 42
+
+
+def sys_ps(current_user: str = "guest") -> list:
+    """Заглушка: процессов нет, возвращаем пустой список."""
+    log_syscall("sys_ps", "", current_user)
+    return []
+
+
+def sys_kill(pid: int, current_user: str = "guest") -> bool:
+    log_syscall("sys_kill", str(pid), current_user)
+    return True
+
+
+# Память
+
+def sys_mem_alloc(size: int, current_user: str = "guest") -> int:
+    log_syscall("sys_mem_alloc", str(size), current_user)
+    return 0
+
+
 # Права и пользователи
 
 def sys_chmod(path: str, mode: str,
@@ -130,28 +176,6 @@ def sys_shutdown(current_user: str = "guest") -> bool:
     log_syscall("sys_shutdown", "", current_user)
     return True
 
-# Процессы
-
-def sys_ps(current_user: str = "guest") -> list:
-    log_syscall("sys_ps", "", current_user)
-    return [] # Заглушка: процессов нет, возвращаем пустой список
-
-def sys_echo(message: str, current_user: str = "guest") -> str:
-    # Возвращает переданное сообщение
-    log_syscall("sys_echo", message, current_user)
-    return message
-
-def sys_get_users(current_user: str = "guest") -> list:
-    # Возвращает список пользователей из базы
-    log_syscall("sys_get_users", "", current_user)
-    conn = get_connection()
-    try:
-        rows = conn.execute(
-            "SELECT id, login, role, created_at FROM users ORDER BY id;"
-        ).fetchall()
-        return [dict(r) for r in rows]
-    finally:
-        conn.close()
 
 # Проверка
 
@@ -159,4 +183,4 @@ if __name__ == "__main__":
     print(sys_login("admin", "secret"))
     print(sys_whoami("admin"))
     print(sys_create_file("/test.txt", "hello", "admin"))
-    print(sys_list_files("/", "admin"))
+    print(sys_ps("admin"))

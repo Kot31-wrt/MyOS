@@ -3,6 +3,7 @@ from src.syscalls import (
     sys_echo, sys_get_users,
     sys_login, sys_logout, sys_whoami,
     sys_create_file, sys_list_files, sys_logs,
+    sys_ps
 )
 
 
@@ -23,7 +24,8 @@ HELP_TEXT = """Доступные команды:
   login           — войти в систему (sys_login)
   logout          — выйти из системы (sys_logout)
   create          — создать файл (sys_create_file)
-  ls              — список файлов в корне (sys_list_files)
+  ls              — список файлов (sys_list_files)
+  ps              — список процессов (sys_ps)
   logs            — последние записи журнала (sys_logs)
   exit            — завершить работу оболочки
 """
@@ -89,6 +91,14 @@ def handle_command(line: str, current_user: str) -> tuple[bool, str]:
         else:
             for f in files:
                 print(f)
+
+    elif cmd == "ps":
+        processes = sys_ps(current_user)
+        if not processes:
+            print("(процессов нет)")
+        else:
+            for p in processes:
+                print(p)
 
     elif cmd == "logs":
         entries = sys_logs(10, current_user)
