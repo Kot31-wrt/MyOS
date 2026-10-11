@@ -65,10 +65,9 @@ def init_db() -> None:
             id          INTEGER PRIMARY KEY AUTOINCREMENT,
             call_name   TEXT    NOT NULL,
             args        TEXT    NOT NULL DEFAULT '',
-            user_id     INTEGER,
-            status      TEXT    NOT NULL DEFAULT 'ok',
-            created_at  TEXT    NOT NULL DEFAULT (datetime('now')),
-            FOREIGN KEY (user_id) REFERENCES users(id)
+            user_id     TEXT,
+            status      TEXT    NOT NULL DEFAULT 'OK',
+            created_at  TEXT    NOT NULL DEFAULT (datetime('now'))
         );
     """)
 
