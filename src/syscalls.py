@@ -130,6 +130,28 @@ def sys_shutdown(current_user: str = "guest") -> bool:
     log_syscall("sys_shutdown", "", current_user)
     return True
 
+# Процессы
+
+def sys_ps(current_user: str = "guest") -> list:
+    log_syscall("sys_ps", "", current_user)
+    return [] # Заглушка: процессов нет, возвращаем пустой список
+
+def sys_echo(message: str, current_user: str = "guest") -> str:
+    # Возвращает переданное сообщение
+    log_syscall("sys_echo", message, current_user)
+    return message
+
+def sys_get_users(current_user: str = "guest") -> list:
+    # Возвращает список пользователей из базы
+    log_syscall("sys_get_users", "", current_user)
+    conn = get_connection()
+    try:
+        rows = conn.execute(
+            "SELECT id, login, role, created_at FROM users ORDER BY id;"
+        ).fetchall()
+        return [dict(r) for r in rows]
+    finally:
+        conn.close()
 
 # Проверка
 
