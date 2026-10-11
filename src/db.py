@@ -1,7 +1,7 @@
 import sqlite3
 from pathlib import Path
 
-# Путь к файлу базы данных: <корень_проекта>/db/os.sqlite
+# Путь к файлу базы данных
 DB_DIR = Path(__file__).resolve().parent.parent / "db"
 DB_PATH = DB_DIR / "os.sqlite"
 
@@ -13,7 +13,7 @@ def get_connection() -> sqlite3.Connection:
     """
     DB_DIR.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row  # доступ к полям по имени
+    conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON;")
     return conn
 
