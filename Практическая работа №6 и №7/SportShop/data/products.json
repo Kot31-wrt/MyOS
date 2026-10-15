@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Air Max",
+    "price": 8990.0,
+    "category": "кроссовки",
+    "sizes": {"36.0": 1, "37.0": 2}
+  },
+  {
+    "id": 2,
+    "name": "Superstar",
+    "price": 7490.0,
+    "category": "кроссовки",
+    "sizes": {"37.0": 4, "38.0": 3}
+  },
+  {
+    "id": 3,
+    "name": "Runfalcon",
+    "price": 5590.0,
+    "category": "кроссовки",
+    "sizes": {"39.0": 2}
+  },
+  {
+    "id": 4,
+    "name": "Футболка Adidas",
+    "price": 2990.0,
+    "category": "одежда",
+    "sizes": {"M": 5, "L": 3}
+  },
+  {
+    "id": 5,
+    "name": "Мяч Nike",
+    "price": 1990.0,
+    "category": "инвентарь",
+    "sizes": {"стандарт": 10}
+  }
+]

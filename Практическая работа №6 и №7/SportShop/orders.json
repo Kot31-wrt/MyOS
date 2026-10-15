@@ -1,0 +1,44 @@
+[
+  {
+    "date": "2026-10-16",
+    "client": "Иванов",
+    "items": [
+      {
+        "id": 1,
+        "name": "Air Max",
+        "price": 8990.0,
+        "size": "36.0",
+        "quantity": 1
+      },
+      {
+        "id": 2,
+        "name": "Superstar",
+        "price": 7490.0,
+        "size": "37.0",
+        "quantity": 2
+      }
+    ],
+    "total": 23970.0
+  },
+  {
+    "date": "2026-10-16",
+    "client": "Иванов",
+    "items": [
+      {
+        "id": 1,
+        "name": "Air Max",
+        "price": 8990.0,
+        "size": "36.0",
+        "quantity": 1
+      },
+      {
+        "id": 2,
+        "name": "Superstar",
+        "price": 7490.0,
+        "size": "37.0",
+        "quantity": 2
+      }
+    ],
+    "total": 23970.0
+  }
+]
