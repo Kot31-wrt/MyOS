@@ -62,3 +62,38 @@ def save_orders(orders, filename='orders.json'):
 
 
 
+# Тестовые данные
+if __name__ == "__main__":
+    products = [
+        {'id': 1, 'name': 'Air Max', 'price': 8990.0, 'category': 'кроссовки',
+         'sizes': {36.0: 1, 37.0: 2}},
+        {'id': 2, 'name': 'Superstar', 'price': 7490.0, 'category': 'кроссовки',
+         'sizes': {37.0: 4, 38.0: 3}},
+        {'id': 3, 'name': 'Runfalcon', 'price': 5590.0, 'category': 'кроссовки',
+         'sizes': {39.0: 2}},
+        {'id': 4, 'name': 'Футболка Adidas', 'price': 2990.0, 'category': 'одежда',
+         'sizes': {'M': 5, 'L': 3}},
+        {'id': 5, 'name': 'Мяч Nike', 'price': 1990.0, 'category': 'инвентарь',
+         'sizes': {'стандарт': 10}},
+    ]
+
+    print("US-1. Товары с низким остатком:")
+    for p in get_low_stock(products):
+        print(f"  {p['name']} — {p['total']} шт.")
+
+    print("\nUS-2. Поиск 'max':")
+    for p in search_advanced(products, 'max'):
+        print(f"  {p['name']} — {p['price']} руб.")
+
+    print("\nUS-3. Аналитика по категориям:")
+    for cat, count in count_by_category(products).items():
+        print(f"  {cat}: {count}")
+
+    print("\nUS-4. Сохранение заказа:")
+    order = {
+        'date': datetime.now().strftime('%Y-%m-%d'),
+        'client': 'Иванов',
+        'items': [{'name': 'Air Max', 'price': 8990.0, 'quantity': 1}],
+    }
+    total_orders = save_orders([order])
+    print(f"  Всего заказов в файле: {total_orders}")
