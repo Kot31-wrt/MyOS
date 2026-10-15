@@ -97,3 +97,6 @@ if __name__ == "__main__":
     }
     total_orders = save_orders([order])
     print(f"  Всего заказов в файле: {total_orders}")
+
+    def cart_total(cart):
+        return sum(item['price'] for item in cart)
