@@ -1,0 +1,13 @@
+[
+  {
+    "date": "2026-10-15",
+    "client": "Иванов",
+    "items": [
+      {
+        "name": "Air Max",
+        "price": 8990.0,
+        "quantity": 1
+      }
+    ]
+  }
+]
