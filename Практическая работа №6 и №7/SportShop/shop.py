@@ -159,3 +159,14 @@ def add_to_cart(cart, products, product_id, size, quantity):
         'quantity': quantity,
     })
     return True, "Товар добавлен"
+
+def remove_from_cart(cart, name):
+    cart[:] = [item for item in cart if item['name'] != name]
+
+
+def update_quantity(cart, name, new_qty):
+    for item in cart:
+        if item['name'] == name:
+            item['quantity'] = new_qty
+            return True
+    return False
