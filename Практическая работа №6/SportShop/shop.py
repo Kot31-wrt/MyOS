@@ -109,4 +109,4 @@ def get_low_stock(products):
     return sorted(low, key=lambda p: p['total'])
 
 def total_sum(products):
-    return sum(p['price'] for p in products)
+    return sum(p['price'] * p['quantity'] for p in products)
