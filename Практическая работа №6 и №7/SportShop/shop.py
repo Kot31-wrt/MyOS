@@ -129,3 +129,33 @@ def search_advanced(products, query, category=None,
             continue
         result.append(p)
     return result
+
+def add_to_cart(cart, products, product_id, size, quantity):
+    product = None
+    for p in products:
+        if p['id'] == product_id:
+            product = p
+            break
+
+    if product is None:
+        return False, "Товар не найден"
+
+    if size not in product['sizes']:
+        return False, f"Размер {size} недоступен"
+
+    if product['sizes'][size] < quantity:
+        return False, "Недостаточно товара на складе"
+
+    for item in cart:
+        if item['id'] == product_id and item['size'] == size:
+            item['quantity'] += quantity
+            return True, "Количество увеличено"
+
+    cart.append({
+        'id': product_id,
+        'name': product['name'],
+        'price': product['price'],
+        'size': size,
+        'quantity': quantity,
+    })
+    return True, "Товар добавлен"
