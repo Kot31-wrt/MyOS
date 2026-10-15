@@ -110,3 +110,6 @@ def get_low_stock(products):
 
 def total_sum(products):
     return sum(p['price'] * p['quantity'] for p in products)
+
+def cart_total(cart):
+        return sum(item['price'] * item['quantity'] for item in cart)
