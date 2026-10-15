@@ -107,3 +107,6 @@ def get_low_stock(products):
         if total <= 3:
             low.append({**p, 'total': total})
     return sorted(low, key=lambda p: p['total'])
+
+def total_sum(products):
+    return sum(p['price'] for p in products)
