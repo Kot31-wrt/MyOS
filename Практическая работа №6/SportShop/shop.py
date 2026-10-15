@@ -99,4 +99,4 @@ if __name__ == "__main__":
     print(f"  Всего заказов в файле: {total_orders}")
 
     def cart_total(cart):
-        return sum(item['price'] for item in cart)
+        return sum(item['price'] * item['quantity'] for item in cart)
