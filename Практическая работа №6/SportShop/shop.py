@@ -44,3 +44,21 @@ def count_by_category(products):
 
 
 
+# US-4. Сохранение заказов
+def save_orders(orders, filename='orders.json'):
+    """Сохраняет заказы в JSON. Если файл есть — добавляет к существующим."""
+    try:
+        with open(filename, 'r', encoding='utf-8') as f:
+            existing = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        existing = []
+
+    existing.extend(orders)
+
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(existing, f, ensure_ascii=False, indent=2)
+
+    return len(existing)
+
+
+
