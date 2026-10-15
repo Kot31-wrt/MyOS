@@ -110,3 +110,19 @@ def get_low_stock(products):
 
 def total_sum(products):
     return sum(p['price'] * p['quantity'] for p in products)
+
+def search_advanced(products, query, category=None,
+                    min_price=None, max_price=None):
+    result = []
+    q = query.lower()
+    for p in products:
+        if q not in p['name'].lower():
+            continue
+        if category and p.get('category') != category:
+            continue
+        if min_price is not None and p['price'] < min_price:
+            continue
+        if max_price is not None and p['price'] > max_price:
+            continue
+        result.append(p)
+    return result
