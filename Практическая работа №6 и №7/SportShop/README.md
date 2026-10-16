@@ -55,7 +55,22 @@
     ├── build.py
     └── README.md
 
+
+
+## Документация
+
+- [API Reference](docs/17_API_Reference.md)
+- [Руководство пользователя](docs/18_User_Guide.md)
+- [Руководство разработчика](docs/19_Developer_Guide.md)
+- [Итоговый отчёт о тестировании](docs/20_Final_Test_Report.md)
+- [Презентация](docs/21_Presentation.md)
+
+
+
 ## Авторы
 
 Студент: Муталибова Алина Руслановна
 Группа: 3-ИП-7-24
+
+## Ссылка на репозиторий с тегом
+https://github.com/Kot31-wrt/MyOS/releases/tag/v1.0
